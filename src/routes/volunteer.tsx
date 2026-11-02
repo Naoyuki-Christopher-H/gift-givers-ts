@@ -53,8 +53,8 @@ function Volunteer() {
           className="space-y-6 rounded-lg border border-border bg-card p-6 md:p-8"
           onSubmit={(e) => {
             e.preventDefault();
-            if (skills.length === 0) return toast.error("Please choose at least one skill.");
-            if (!availability) return toast.error("Please choose your availability.");
+            if (skills.length === 0) { toast.error("Please choose at least one skill."); return; }
+            if (!availability) { toast.error("Please choose your availability."); return; }
             const f = new FormData(e.currentTarget);
             const name = String(f.get("name")).trim();
             addVolunteer({ name, email: String(f.get("email")), phone: String(f.get("phone")), skills, availability });

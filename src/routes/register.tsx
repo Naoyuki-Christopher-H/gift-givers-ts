@@ -32,7 +32,7 @@ function Register() {
           e.preventDefault();
           const f = new FormData(e.currentTarget);
           const password = String(f.get("password"));
-          if (password.length < 8) return setError("Password must be at least 8 characters.");
+          if (password.length < 8) { setError("Password must be at least 8 characters."); return; }
           try {
             register(String(f.get("name")), String(f.get("email")), password);
             toast.success("Account created");

@@ -52,8 +52,8 @@ function Donate() {
           className="space-y-7 rounded-lg border border-border bg-card p-6 md:p-8"
           onSubmit={(e) => {
             e.preventDefault();
-            if (!isValidAmount(value)) return toast.error("Please enter an amount between 10 and 1,000,000.");
-            if (!user && !isAnon && !guestName.trim()) return toast.error("Please enter your name or choose to give anonymously.");
+            if (!isValidAmount(value)) { toast.error("Please enter an amount between 10 and 1,000,000."); return; }
+            if (!user && !isAnon && !guestName.trim()) { toast.error("Please enter your name or choose to give anonymously."); return; }
             const d = addDonation({
               donorName: user ? user.name : isAnon ? "Anonymous guest" : guestName.trim(),
               donorEmail: user ? user.email : isAnon ? null : guestEmail.trim() || null,
