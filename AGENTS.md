@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Prototype data lives in `src/lib/store.ts` (browser localStorage, subscribed as one state object) so the site runs anywhere, including Azure App Services; replace with Azure SQL calls in Part 2 without changing pages.
+- Donation maths and certificate numbering stay in pure `src/lib/helpers.ts` with tests, so they can be packaged as the Part 2 npm helper library.

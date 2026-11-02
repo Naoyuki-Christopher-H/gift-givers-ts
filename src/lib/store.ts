@@ -135,11 +135,13 @@ function subscribe(l: () => void) {
 }
 
 export function useStore<T>(select: (s: State) => T): T {
-  return useSyncExternalStore(
+  // Subscribe to the whole state (stable reference), then derive.
+  const snapshot = useSyncExternalStore(
     subscribe,
-    () => select(state),
-    () => select(seed),
+    () => state,
+    () => seed,
   );
+  return select(snapshot);
 }
 
 export function useCurrentUser(): User | null {
