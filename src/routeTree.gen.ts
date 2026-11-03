@@ -23,6 +23,8 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
+import { Route as TopicsSectionIndexRouteImport } from './routes/topics.$section.index'
+import { Route as TopicsSectionTopicRouteImport } from './routes/topics.$section.$topic'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -94,6 +96,16 @@ const VolunteerRoute = VolunteerRouteImport.update({
   path: '/volunteer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TopicsSectionIndexRoute = TopicsSectionIndexRouteImport.update({
+  id: '/topics/$section/',
+  path: '/topics/$section/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TopicsSectionTopicRoute = TopicsSectionTopicRouteImport.update({
+  id: '/topics/$section/$topic',
+  path: '/topics/$section/$topic',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -110,6 +122,8 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
   '/volunteer': typeof VolunteerRoute
+  '/topics/$section/$topic': typeof TopicsSectionTopicRoute
+  '/topics/$section/': typeof TopicsSectionIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -126,6 +140,8 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
   '/volunteer': typeof VolunteerRoute
+  '/topics/$section/$topic': typeof TopicsSectionTopicRoute
+  '/topics/$section': typeof TopicsSectionIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,6 +159,8 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
   '/volunteer': typeof VolunteerRoute
+  '/topics/$section/$topic': typeof TopicsSectionTopicRoute
+  '/topics/$section/': typeof TopicsSectionIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,6 +179,8 @@ export interface FileRouteTypes {
     | '/register'
     | '/terms'
     | '/volunteer'
+    | '/topics/$section/$topic'
+    | '/topics/$section/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,6 +197,8 @@ export interface FileRouteTypes {
     | '/register'
     | '/terms'
     | '/volunteer'
+    | '/topics/$section/$topic'
+    | '/topics/$section'
   id:
     | '__root__'
     | '/'
@@ -193,6 +215,8 @@ export interface FileRouteTypes {
     | '/register'
     | '/terms'
     | '/volunteer'
+    | '/topics/$section/$topic'
+    | '/topics/$section/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -210,6 +234,8 @@ export interface RootRouteChildren {
   RegisterRoute: typeof RegisterRoute
   TermsRoute: typeof TermsRoute
   VolunteerRoute: typeof VolunteerRoute
+  TopicsSectionTopicRoute: typeof TopicsSectionTopicRoute
+  TopicsSectionIndexRoute: typeof TopicsSectionIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -312,6 +338,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VolunteerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/topics/$section/': {
+      id: '/topics/$section/'
+      path: '/topics/$section'
+      fullPath: '/topics/$section/'
+      preLoaderRoute: typeof TopicsSectionIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/topics/$section/$topic': {
+      id: '/topics/$section/$topic'
+      path: '/topics/$section/$topic'
+      fullPath: '/topics/$section/$topic'
+      preLoaderRoute: typeof TopicsSectionTopicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -330,6 +370,8 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterRoute: RegisterRoute,
   TermsRoute: TermsRoute,
   VolunteerRoute: VolunteerRoute,
+  TopicsSectionTopicRoute: TopicsSectionTopicRoute,
+  TopicsSectionIndexRoute: TopicsSectionIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

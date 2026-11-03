@@ -16,6 +16,8 @@ export function SiteFooter() {
             <li><Link to="/donate" className="hover:text-foreground">Donate</Link></li>
             <li><Link to="/volunteer" className="hover:text-foreground">Volunteer</Link></li>
             <li><Link to="/contact" className="hover:text-foreground">Contact information</Link></li>
+            <li><Link to="/topics/$section" params={{ section: "international-law" }} className="hover:text-foreground">International Law</Link></li>
+            <li><Link to="/topics/$section" params={{ section: "finance" }} className="hover:text-foreground">Finance</Link></li>
           </ul>
         </div>
         <div className="text-sm">
