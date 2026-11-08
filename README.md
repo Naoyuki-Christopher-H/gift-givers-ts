@@ -149,9 +149,7 @@ a static Node.js site.
 
 ## 12. Legal Notice
 
-Copyright 2026 Gift of the Givers Foundation. Prototype built
-for academic purposes. See the Copyright Notice page on the
-website for permitted use.
+Prototype built for academic purposes.
 
 ---
 
